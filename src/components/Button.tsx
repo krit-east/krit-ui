@@ -28,7 +28,7 @@ export const Button: React.FC<ButtonProps> = ({
   `;
 
   return (
-    <button className={classes} {...props}>
+    <button className='bg-green-600' {...props}>
       {children}
     </button>
   );
