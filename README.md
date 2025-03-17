@@ -15,7 +15,7 @@ npm install krit-ui
 ```css
 /* globals.css */
 @import "tailwindcss";
-@plugin "kritui";
+@plugin "krit-ui";
 
 /* กำหนดสีของปุ่ม success (ถ้าต้องการเปลี่ยนจากค่าเริ่มต้น) */
 @theme {
