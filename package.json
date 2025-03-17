@@ -1,6 +1,6 @@
 {
   "name": "krit-ui",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "ปุ่ม Success สำหรับ NextJS 15.2.2 ขึ้นไป กับ Tailwind CSS 4",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,13 +9,16 @@
       "require": "./dist/index.js",
       "import": "./dist/index.js", 
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./plugin": "./dist/plugin.js",
+    "./styles": "./dist/styles.css"
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npm run build:css",
+    "build:css": "echo /* CSS for krit-ui */ > dist/styles.css",
     "prepare": "npm run build"
   },
   "devDependencies": {

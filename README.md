@@ -1,39 +1,83 @@
-# Krit UI Button
+# krit-ui
 
-ปุ่ม Success สำหรับ NextJS 15.2.2 ขึ้นไป กับ Tailwind CSS 4 แบบง่ายๆ
+ปุ่ม Success อย่างง่ายสำหรับ NextJS 15.2.2 ขึ้นไป กับ Tailwind CSS 4
 
-## วิธีการติดตั้ง
+## การติดตั้ง
 
 ```bash
+# ติดตั้งด้วย npm
 npm install krit-ui
 ```
 
-## วิธีการใช้งาน
+## วิธีใช้งาน
 
-ใช้งานง่ายๆ แค่ import แล้วใช้ได้เลย:
+มี 2 วิธีในการใช้งาน krit-ui:
+
+### วิธีที่ 1: ใช้งานแบบ React Component ธรรมดา (กับ Tailwind CSS)
 
 ```jsx
 import { Button } from 'krit-ui';
 
-export default function MyPage() {
+export default function MyComponent() {
   return (
     <div>
-      <h1>ทดสอบปุ่ม Krit UI</h1>
-      
-      {/* ใช้งานแบบพื้นฐาน */}
-      <Button>ปุ่มสีเขียว</Button>
-      
-      {/* เพิ่ม className เพื่อปรับแต่ง */}
-      <Button className="px-10">ปุ่มกว้างขึ้น</Button>
-      
-      {/* เพิ่ม event handlers */}
-      <Button onClick={() => alert('คลิก!')}>
-        คลิกฉัน!
-      </Button>
+      <Button>ปุ่ม Success</Button>
     </div>
   );
 }
 ```
+
+### วิธีที่ 2: ใช้งานแบบ Tailwind CSS Plugin
+
+#### 1. เพิ่ม plugin ในไฟล์ tailwind.config.js หรือ .mjs:
+
+```js
+import { kritUIPlugin } from 'krit-ui';
+
+export default {
+  content: [
+    // ...
+  ],
+  theme: {
+    // ...
+  },
+  plugins: [
+    kritUIPlugin,
+    // ...
+  ],
+};
+```
+
+#### 2. นำเข้า CSS ของ krit-ui ในไฟล์ globals.css:
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* นำเข้า CSS สำหรับ krit-ui */
+@import 'krit-ui/styles';
+```
+
+#### 3. นำไปใช้ในหน้าเว็บ:
+
+```jsx
+import { Button } from 'krit-ui';
+
+export default function MyComponent() {
+  return (
+    <div>
+      <Button>ปุ่ม Success</Button>
+    </div>
+  );
+}
+```
+
+## Features
+
+- สามารถใช้งานได้ทั้งแบบ React Component ธรรมดาและแบบ Tailwind CSS Plugin
+- รองรับ NextJS 15.2.2 ขึ้นไปและ Tailwind CSS 4
+- สามารถใช้งานร่วมกับ Tailwind CSS classes ได้
 
 ## คุณสมบัติ
 
