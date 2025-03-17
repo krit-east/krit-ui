@@ -1,39 +1,113 @@
-import React from 'react';
+import  { ButtonHTMLAttributes, forwardRef } from 'react';
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
-   * สีของปุ่ม (มีเฉพาะ success เท่านั้น)
+   * สีหรือสไตล์ของปุ่ม
+   * @default 'default'
    */
-  color?: 'success';
+  color?:
+    | 'default'
+    | 'info'
+    | 'secondary'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | string; // รองรับรหัสสี เช่น #000000
+  
   /**
-   * คลาสเพิ่มเติม (ใช้ Tailwind CSS classes ได้)
+   * ขนาดของปุ่ม
+   * @default 'md' 
    */
-  className?: string;
+  size?: 'none' | 'sm' | 'md' | 'lg' | 'full';
+  
+  /**
+   * รูปแบบการแสดงผลของปุ่ม
+   * @default 'solid'
+   */
+  variant?:
+    | 'solid'
+    | 'faded'
+    | 'bordered'
+    | 'light'
+    | 'flat'
+    | 'ghost'
+    | 'shadow';
+  
+  /**
+   * สถานะกำลังโหลด แสดง spinner
+   * @default false
+   */
+  isLoading?: boolean;
 }
 
 /**
- * ปุ่ม Success อย่างง่าย - สามารถใช้ได้ทั้งแบบ Tailwind CSS หรือใช้กับ Tailwind CSS plugin
+ * ปุ่มที่ใช้งานได้หลากหลายรูปแบบ ใช้ CSS classes โดยตรง
  */
-export const Button: React.FC<ButtonProps> = ({
-  children,
-  color = 'success',
-  className = '',
-  ...props
-}) => {
-  // สามารถใช้ได้ทั้ง Tailwind classes โดยตรง หรือใช้งานผ่าน plugin
-  const buttonClass = color === 'success' ? 'krit-btn krit-btn-success' : '';
-  
-  // ใช้ได้ทั้ง krit-btn ที่มาจาก plugin หรือใช้ Tailwind classes โดยตรง
-  const tailwindClass = color === 'success' ? 'bg-green-600 text-white hover:bg-green-700 rounded-md px-4 py-2 font-medium' : '';
-  
-  // รวมทั้ง 2 แบบเข้าด้วยกัน (แบบใดแบบหนึ่งจะทำงาน ขึ้นอยู่กับการตั้งค่าของผู้ใช้)
-  const classes = `${buttonClass} ${tailwindClass} ${className}`;
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      className = '',
+      color = 'default',
+      size = 'md',
+      variant = 'solid',
+      isLoading = false,
+      disabled,
+      children,
+      style,
+      ...props
+    },
+    ref,
+  ) => {
+    // สร้าง CSS classes จากการรวม base class กับ color, size และ variant
+    const baseClasses = 'krit-btn';
+    const sizeClass = `krit-btn-${size}`;
+    
+    // ตรวจสอบว่า color เป็นรหัสสีหรือไม่ (เช่น #000000)
+    const isColorCode = color.startsWith('#') || color.startsWith('rgb');
+    
+    // ถ้าเป็นรหัสสี ให้ใช้ inline style แทน class
+    const variantClass = isColorCode ? '' : `krit-btn-${color}-${variant}`;
+    const loadingClass = isLoading ? 'krit-btn-loading' : '';
+    
+    // แปลง className จากภายนอกให้มี !important
+    const externalClasses = className
+      .split(' ')
+      .filter(Boolean)
+      .map(cls => `${cls}!`)
+      .join(' ');
+    
+    // รวม classes ทั้งหมด โดยให้ className ที่ส่งเข้ามาจากภายนอกมีความสำคัญสูงสุด
+    const classes = [
+      baseClasses,
+      sizeClass,
+      variantClass,
+      loadingClass,
+    ].filter(Boolean).join(' ');
+    
+    // สร้าง inline style สำหรับรหัสสี
+    const buttonStyle = isColorCode ? {
+      backgroundColor: color,
+      borderColor: color,
+      color: '#ffffff', // ตัวอักษรสีขาวเมื่อใช้รหัสสี
+      ...(style || {})
+    } : style;
 
-  return (
-    <button className={classes} {...props}>
-      {children}
-    </button>
-  );
-};
+    return (
+      <button
+        ref={ref}
+        disabled={disabled || isLoading}
+        className={`${classes} ${externalClasses}`}
+        // className='bg-purple-500'
+        style={buttonStyle}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  },
+);
 
+Button.displayName = 'Button';
+
+export { Button };
 export default Button;

@@ -1,0 +1,6 @@
+/* Main entry point for krit-ui CSS */
+@import "tailwindcss";
+/* Import button styles */
+@import './button.css';
+
+/* CSS สำหรับ krit-ui */

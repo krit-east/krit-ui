@@ -1,24 +1,27 @@
 {
   "name": "krit-ui",
-  "version": "0.3.0",
-  "description": "ปุ่ม Success สำหรับ NextJS 15.2.2 ขึ้นไป กับ Tailwind CSS 4",
+  "version": "0.5.5",
+  "description": "ชุด UI Components สำหรับ React ที่ใช้ CSS โดยตรงและสนับสนุน Tailwind CSS",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "style": "dist/styles/styles.css",
   "exports": {
     ".": {
       "require": "./dist/index.js",
-      "import": "./dist/index.js", 
-      "types": "./dist/index.d.ts"
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "style": "./dist/styles/styles.css"
     },
-    "./plugin": "./dist/plugin.js",
-    "./styles": "./dist/styles.css"
+    "./styles": "./dist/styles/styles.css",
+    "./styles/button": "./dist/styles/button.css",
+    "./package.json": "./package.json"
   },
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "tsc && npm run build:css",
-    "build:css": "echo /* CSS for krit-ui */ > dist/styles.css",
+    "build:css": "powershell -Command \"if (!(Test-Path dist/styles)) { New-Item -ItemType Directory -Path dist/styles -Force }; Copy-Item -Path src/styles/*.css -Destination dist/styles/\"",
     "prepare": "npm run build"
   },
   "devDependencies": {
@@ -28,14 +31,13 @@
     "typescript": "^5.0.0"
   },
   "peerDependencies": {
-    "react": ">=18.2.0",
-    "tailwindcss": ">=4.0.0"
+    "react": ">=18.2.0"
   },
   "keywords": [
     "react",
-    "tailwind4",
     "ui",
     "components",
+    "css",
     "nextjs"
   ],
   "author": "krit-east",

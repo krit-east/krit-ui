@@ -1,0 +1,649 @@
+/* หน้าตาและรูปแบบของปุ่ม */
+.krit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition-property: background-color, color, border-color, box-shadow;
+  transition-duration: 200ms;
+  position: relative;
+}
+
+.krit-btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Button Base Styles */
+.krit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.krit-btn:focus {
+  outline: 0;
+}
+
+.krit-btn:disabled {
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+/* Button Sizes */
+.krit-btn-none {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.krit-btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+}
+
+.krit-btn-md {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.375rem;
+}
+
+.krit-btn-lg {
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  border-radius: 0.5rem;
+}
+
+.krit-btn-full {
+  display: flex;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.375rem;
+}
+
+/* Loading State */
+.krit-btn-loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.krit-btn-loading::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: krit-btn-loading-shimmer 1.5s infinite;
+}
+
+.krit-btn-loading::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 0.75rem);
+  left: calc(50% - 0.75rem);
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: krit-btn-spinner 1s ease-in-out infinite;
+}
+
+@keyframes krit-btn-loading-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes krit-btn-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Button Variants */
+
+/* Default */
+.krit-btn-default-solid {
+  background-color: #6b7280;
+  border-color: #6b7280;
+  color: #ffffff;
+}
+
+.krit-btn-default-solid:hover:not(:disabled) {
+  background-color: #4b5563;
+  border-color: #4b5563;
+}
+
+.krit-btn-default-faded {
+  background-color: rgba(107, 114, 128, 0.1);
+  border-color: transparent;
+  color: #6b7280;
+}
+
+.krit-btn-default-faded:hover:not(:disabled) {
+  background-color: rgba(107, 114, 128, 0.2);
+}
+
+.krit-btn-default-bordered {
+  background-color: transparent;
+  border-color: #6b7280;
+  color: #6b7280;
+}
+
+.krit-btn-default-bordered:hover:not(:disabled) {
+  background-color: rgba(107, 114, 128, 0.1);
+}
+
+.krit-btn-default-light {
+  background-color: #f3f4f6;
+  border-color: transparent;
+  color: #6b7280;
+}
+
+.krit-btn-default-light:hover:not(:disabled) {
+  background-color: #e5e7eb;
+}
+
+.krit-btn-default-flat {
+  background-color: transparent;
+  border-color: transparent;
+  color: #6b7280;
+}
+
+.krit-btn-default-flat:hover:not(:disabled) {
+  background-color: rgba(107, 114, 128, 0.1);
+}
+
+.krit-btn-default-ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: #6b7280;
+}
+
+.krit-btn-default-ghost:hover:not(:disabled) {
+  background-color: rgba(107, 114, 128, 0.05);
+  color: #4b5563;
+}
+
+.krit-btn-default-shadow {
+  background-color: #ffffff;
+  border-color: #e5e7eb;
+  color: #6b7280;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.krit-btn-default-shadow:hover:not(:disabled) {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Info */
+.krit-btn-info-solid {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  color: #ffffff;
+}
+
+.krit-btn-info-solid:hover:not(:disabled) {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+.krit-btn-info-faded {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-color: transparent;
+  color: #3b82f6;
+}
+
+.krit-btn-info-faded:hover:not(:disabled) {
+  background-color: rgba(59, 130, 246, 0.2);
+}
+
+.krit-btn-info-bordered {
+  background-color: transparent;
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.krit-btn-info-bordered:hover:not(:disabled) {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.krit-btn-info-light {
+  background-color: #eff6ff;
+  border-color: transparent;
+  color: #3b82f6;
+}
+
+.krit-btn-info-light:hover:not(:disabled) {
+  background-color: #dbeafe;
+}
+
+.krit-btn-info-flat {
+  background-color: transparent;
+  border-color: transparent;
+  color: #3b82f6;
+}
+
+.krit-btn-info-flat:hover:not(:disabled) {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.krit-btn-info-ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: #3b82f6;
+}
+
+.krit-btn-info-ghost:hover:not(:disabled) {
+  background-color: rgba(59, 130, 246, 0.05);
+  color: #2563eb;
+}
+
+.krit-btn-info-shadow {
+  background-color: #ffffff;
+  border-color: #dbeafe;
+  color: #3b82f6;
+  box-shadow: 0 1px 3px 0 rgba(59, 130, 246, 0.1), 0 1px 2px 0 rgba(59, 130, 246, 0.06);
+}
+
+.krit-btn-info-shadow:hover:not(:disabled) {
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1), 0 2px 4px -1px rgba(59, 130, 246, 0.06);
+}
+
+/* Secondary */
+.krit-btn-secondary-solid {
+  background-color: #6b7280;
+  border-color: #6b7280;
+  color: #ffffff;
+}
+
+.krit-btn-secondary-solid:hover:not(:disabled) {
+  background-color: #4b5563;
+  border-color: #4b5563;
+}
+
+.krit-btn-secondary-faded {
+  background-color: rgba(107, 114, 128, 0.1);
+  border-color: transparent;
+  color: #6b7280;
+}
+
+.krit-btn-secondary-faded:hover:not(:disabled) {
+  background-color: rgba(107, 114, 128, 0.2);
+}
+
+.krit-btn-secondary-bordered {
+  background-color: transparent;
+  border-color: #6b7280;
+  color: #6b7280;
+}
+
+.krit-btn-secondary-bordered:hover:not(:disabled) {
+  background-color: rgba(107, 114, 128, 0.1);
+}
+
+.krit-btn-secondary-light {
+  background-color: #f3f4f6;
+  border-color: transparent;
+  color: #6b7280;
+}
+
+.krit-btn-secondary-light:hover:not(:disabled) {
+  background-color: #e5e7eb;
+}
+
+.krit-btn-secondary-flat {
+  background-color: transparent;
+  border-color: transparent;
+  color: #6b7280;
+}
+
+.krit-btn-secondary-flat:hover:not(:disabled) {
+  background-color: rgba(107, 114, 128, 0.1);
+}
+
+.krit-btn-secondary-ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: #6b7280;
+}
+
+.krit-btn-secondary-ghost:hover:not(:disabled) {
+  background-color: rgba(107, 114, 128, 0.05);
+  color: #4b5563;
+}
+
+.krit-btn-secondary-shadow {
+  background-color: #ffffff;
+  border-color: #e5e7eb;
+  color: #6b7280;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.krit-btn-secondary-shadow:hover:not(:disabled) {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Success */
+.krit-btn-success-solid {
+  background-color: #10b981;
+  border-color: #10b981;
+  color: #ffffff;
+}
+
+.krit-btn-success-solid:hover:not(:disabled) {
+  background-color: #059669;
+  border-color: #059669;
+}
+
+.krit-btn-success-faded {
+  background-color: rgba(16, 185, 129, 0.1);
+  border-color: transparent;
+  color: #10b981;
+}
+
+.krit-btn-success-faded:hover:not(:disabled) {
+  background-color: rgba(16, 185, 129, 0.2);
+}
+
+.krit-btn-success-bordered {
+  background-color: transparent;
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.krit-btn-success-bordered:hover:not(:disabled) {
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+.krit-btn-success-light {
+  background-color: #ecfdf5;
+  border-color: transparent;
+  color: #10b981;
+}
+
+.krit-btn-success-light:hover:not(:disabled) {
+  background-color: #d1fae5;
+}
+
+.krit-btn-success-flat {
+  background-color: transparent;
+  border-color: transparent;
+  color: #10b981;
+}
+
+.krit-btn-success-flat:hover:not(:disabled) {
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+.krit-btn-success-ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: #10b981;
+}
+
+.krit-btn-success-ghost:hover:not(:disabled) {
+  background-color: rgba(16, 185, 129, 0.05);
+  color: #059669;
+}
+
+.krit-btn-success-shadow {
+  background-color: #ffffff;
+  border-color: #d1fae5;
+  color: #10b981;
+  box-shadow: 0 1px 3px 0 rgba(16, 185, 129, 0.1), 0 1px 2px 0 rgba(16, 185, 129, 0.06);
+}
+
+.krit-btn-success-shadow:hover:not(:disabled) {
+  box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.1), 0 2px 4px -1px rgba(16, 185, 129, 0.06);
+}
+
+/* Warning */
+.krit-btn-warning-solid {
+  background-color: #f59e0b;
+  border-color: #f59e0b;
+  color: #ffffff;
+}
+
+.krit-btn-warning-solid:hover:not(:disabled) {
+  background-color: #d97706;
+  border-color: #d97706;
+}
+
+.krit-btn-warning-faded {
+  background-color: rgba(245, 158, 11, 0.1);
+  border-color: transparent;
+  color: #f59e0b;
+}
+
+.krit-btn-warning-faded:hover:not(:disabled) {
+  background-color: rgba(245, 158, 11, 0.2);
+}
+
+.krit-btn-warning-bordered {
+  background-color: transparent;
+  border-color: #f59e0b;
+  color: #f59e0b;
+}
+
+.krit-btn-warning-bordered:hover:not(:disabled) {
+  background-color: rgba(245, 158, 11, 0.1);
+}
+
+.krit-btn-warning-light {
+  background-color: #fffbeb;
+  border-color: transparent;
+  color: #f59e0b;
+}
+
+.krit-btn-warning-light:hover:not(:disabled) {
+  background-color: #fef3c7;
+}
+
+.krit-btn-warning-flat {
+  background-color: transparent;
+  border-color: transparent;
+  color: #f59e0b;
+}
+
+.krit-btn-warning-flat:hover:not(:disabled) {
+  background-color: rgba(245, 158, 11, 0.1);
+}
+
+.krit-btn-warning-ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: #f59e0b;
+}
+
+.krit-btn-warning-ghost:hover:not(:disabled) {
+  background-color: rgba(245, 158, 11, 0.05);
+  color: #d97706;
+}
+
+.krit-btn-warning-shadow {
+  background-color: #ffffff;
+  border-color: #fef3c7;
+  color: #f59e0b;
+  box-shadow: 0 1px 3px 0 rgba(245, 158, 11, 0.1), 0 1px 2px 0 rgba(245, 158, 11, 0.06);
+}
+
+.krit-btn-warning-shadow:hover:not(:disabled) {
+  box-shadow: 0 4px 6px -1px rgba(245, 158, 11, 0.1), 0 2px 4px -1px rgba(245, 158, 11, 0.06);
+}
+
+/* Error */
+.krit-btn-error-solid {
+  background-color: #ef4444;
+  border-color: #ef4444;
+  color: #ffffff;
+}
+
+.krit-btn-error-solid:hover:not(:disabled) {
+  background-color: #dc2626;
+  border-color: #dc2626;
+}
+
+.krit-btn-error-faded {
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: transparent;
+  color: #ef4444;
+}
+
+.krit-btn-error-faded:hover:not(:disabled) {
+  background-color: rgba(239, 68, 68, 0.2);
+}
+
+.krit-btn-error-bordered {
+  background-color: transparent;
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.krit-btn-error-bordered:hover:not(:disabled) {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.krit-btn-error-light {
+  background-color: #fef2f2;
+  border-color: transparent;
+  color: #ef4444;
+}
+
+.krit-btn-error-light:hover:not(:disabled) {
+  background-color: #fee2e2;
+}
+
+.krit-btn-error-flat {
+  background-color: transparent;
+  border-color: transparent;
+  color: #ef4444;
+}
+
+.krit-btn-error-flat:hover:not(:disabled) {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.krit-btn-error-ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: #ef4444;
+}
+
+.krit-btn-error-ghost:hover:not(:disabled) {
+  background-color: rgba(239, 68, 68, 0.05);
+  color: #dc2626;
+}
+
+.krit-btn-error-shadow {
+  background-color: #ffffff;
+  border-color: #fee2e2;
+  color: #ef4444;
+  box-shadow: 0 1px 3px 0 rgba(239, 68, 68, 0.1), 0 1px 2px 0 rgba(239, 68, 68, 0.06);
+}
+
+.krit-btn-error-shadow:hover:not(:disabled) {
+  box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.1), 0 2px 4px -1px rgba(239, 68, 68, 0.06);
+}
+
+/* Purple */
+.krit-btn-purple-solid {
+  background-color: #8b5cf6;
+  border-color: #8b5cf6;
+  color: #ffffff;
+}
+
+.krit-btn-purple-solid:hover:not(:disabled) {
+  background-color: #7c3aed;
+  border-color: #7c3aed;
+}
+
+.krit-btn-purple-faded {
+  background-color: rgba(139, 92, 246, 0.1);
+  border-color: transparent;
+  color: #8b5cf6;
+}
+
+.krit-btn-purple-faded:hover:not(:disabled) {
+  background-color: rgba(139, 92, 246, 0.2);
+}
+
+.krit-btn-purple-bordered {
+  background-color: transparent;
+  border-color: #8b5cf6;
+  color: #8b5cf6;
+}
+
+.krit-btn-purple-bordered:hover:not(:disabled) {
+  background-color: rgba(139, 92, 246, 0.1);
+}
+
+.krit-btn-purple-light {
+  background-color: #f5f3ff;
+  border-color: transparent;
+  color: #8b5cf6;
+}
+
+.krit-btn-purple-light:hover:not(:disabled) {
+  background-color: #ede9fe;
+}
+
+.krit-btn-purple-flat {
+  background-color: transparent;
+  border-color: transparent;
+  color: #8b5cf6;
+}
+
+.krit-btn-purple-flat:hover:not(:disabled) {
+  background-color: rgba(139, 92, 246, 0.1);
+}
+
+.krit-btn-purple-ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: #8b5cf6;
+}
+
+.krit-btn-purple-ghost:hover:not(:disabled) {
+  background-color: rgba(139, 92, 246, 0.05);
+  color: #7c3aed;
+}
+
+.krit-btn-purple-shadow {
+  background-color: #ffffff;
+  border-color: #ede9fe;
+  color: #8b5cf6;
+  box-shadow: 0 1px 3px 0 rgba(139, 92, 246, 0.1), 0 1px 2px 0 rgba(139, 92, 246, 0.06);
+}
+
+.krit-btn-purple-shadow:hover:not(:disabled) {
+  box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.1), 0 2px 4px -1px rgba(139, 92, 246, 0.06);
+}
