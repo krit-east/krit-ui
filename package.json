@@ -20,7 +20,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npm run copy-entrypoint",
+    "copy-entrypoint": "node -e \"require('fs').copyFileSync('src/kritui.js', 'dist/kritui.js')\"",
     "prepare": "npm run build"
   },
   "devDependencies": {
