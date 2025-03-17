@@ -1,6 +1,6 @@
-# Krit UI
+# Krit UI Button
 
-ไลบรารี UI อย่างง่ายที่ทำงานร่วมกับ Tailwind CSS 4 สำหรับโปรเจค NextJS 15.2.2 ขึ้นไป
+ปุ่ม Success สำหรับ NextJS 15.2.2 ขึ้นไป กับ Tailwind CSS 4 แบบง่ายๆ
 
 ## วิธีการติดตั้ง
 
@@ -10,42 +10,7 @@ npm install krit-ui
 
 ## วิธีการใช้งาน
 
-### วิธีที่ 1: ใช้ผ่าน @plugin directive ใน CSS (แนะนำ)
-
-```css
-/* globals.css */
-@import "tailwindcss";
-@plugin "kritui";
-
-/* กำหนดสีของปุ่ม success (ถ้าต้องการเปลี่ยนจากค่าเริ่มต้น) */
-@theme {
-  --krit-color-success: #16a34a;
-  --krit-color-success-hover: #15803d;
-}
-```
-
-แล้วใช้งานใน HTML หรือ JSX:
-
-```html
-<button class="krit-btn krit-btn-success">ปุ่ม Success</button>
-```
-
-### วิธีที่ 2: ใช้ผ่าน JavaScript/TypeScript
-
-```javascript
-// tailwind.config.js
-const { kritUIPlugin } = require('krit-ui');
-
-module.exports = {
-  plugins: [
-    kritUIPlugin
-  ],
-}
-```
-
-### วิธีที่ 3: ใช้งานแบบ React Component
-
-เวอร์ชัน 0.1.3 มีการเพิ่ม React Component สำหรับใช้งานได้ง่ายยิ่งขึ้น:
+ใช้งานง่ายๆ แค่ import แล้วใช้ได้เลย:
 
 ```jsx
 import { Button } from 'krit-ui';
@@ -55,18 +20,15 @@ export default function MyPage() {
     <div>
       <h1>ทดสอบปุ่ม Krit UI</h1>
       
-      {/* ใช้งานแบบง่ายที่สุด */}
+      {/* ใช้งานแบบพื้นฐาน */}
       <Button>ปุ่มสีเขียว</Button>
       
-      {/* ระบุขนาด size (sm, md, lg) */}
-      <Button size="sm">ปุ่มขนาดเล็ก</Button>
+      {/* เพิ่ม className เพื่อปรับแต่ง */}
+      <Button className="px-10">ปุ่มกว้างขึ้น</Button>
       
-      {/* ระบุสี (ตอนนี้มีแค่ success) */}
-      <Button color="success">ปุ่ม Success</Button>
-      
-      {/* เพิ่ม className และ onClick event */}
-      <Button className="mt-4" onClick={() => alert('คลิก!')}>
-        ปุ่มพร้อม Event
+      {/* เพิ่ม event handlers */}
+      <Button onClick={() => alert('คลิก!')}>
+        คลิกฉัน!
       </Button>
     </div>
   );
@@ -75,9 +37,17 @@ export default function MyPage() {
 
 ## คุณสมบัติ
 
-- **ปุ่มสี Success**: ใช้ class `krit-btn krit-btn-success` หรือ `<Button color="success">` สำหรับปุ่มสีเขียว
-- **การปรับแต่ง**: สามารถปรับแต่งสีได้ผ่านตัวแปร CSS `--krit-color-success` และ `--krit-color-success-hover`
-- **React Component**: ใช้งานง่ายผ่าน `<Button>` component
+- **เรียบง่าย**: ใช้ Tailwind CSS 4 classes โดยตรง
+- **ไม่ต้องตั้งค่าเพิ่มเติม**: ไม่ต้องกำหนดค่าใน tailwind.config.js หรือใน CSS
+- **ใช้งานง่าย**: แค่ import แล้วใช้งานได้เลย
+- **รองรับ All Props ของ Button**: สามารถใช้ props ทั้งหมดของ HTML button เช่น onClick, disabled, type ฯลฯ
+
+## Props ที่รองรับ
+
+| Prop | Type | Default | คำอธิบาย |
+|------|------|---------|----------|
+| `color` | `'success'` | `'success'` | สีของปุ่ม (มีเฉพาะ success) |
+| `className` | `string` | `''` | คลาสเพิ่มเติม (ใช้ Tailwind CSS ได้) |
 
 ## ใบอนุญาต
 
