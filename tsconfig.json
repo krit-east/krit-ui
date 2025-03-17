@@ -8,7 +8,9 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "jsx": "react",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]

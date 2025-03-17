@@ -43,10 +43,41 @@ module.exports = {
 }
 ```
 
+### วิธีที่ 3: ใช้งานแบบ React Component
+
+เวอร์ชัน 0.1.3 มีการเพิ่ม React Component สำหรับใช้งานได้ง่ายยิ่งขึ้น:
+
+```jsx
+import { Button } from 'krit-ui';
+
+export default function MyPage() {
+  return (
+    <div>
+      <h1>ทดสอบปุ่ม Krit UI</h1>
+      
+      {/* ใช้งานแบบง่ายที่สุด */}
+      <Button>ปุ่มสีเขียว</Button>
+      
+      {/* ระบุขนาด size (sm, md, lg) */}
+      <Button size="sm">ปุ่มขนาดเล็ก</Button>
+      
+      {/* ระบุสี (ตอนนี้มีแค่ success) */}
+      <Button color="success">ปุ่ม Success</Button>
+      
+      {/* เพิ่ม className และ onClick event */}
+      <Button className="mt-4" onClick={() => alert('คลิก!')}>
+        ปุ่มพร้อม Event
+      </Button>
+    </div>
+  );
+}
+```
+
 ## คุณสมบัติ
 
-- **ปุ่มสี Success**: ใช้ class `krit-btn krit-btn-success` สำหรับปุ่มสีเขียว
+- **ปุ่มสี Success**: ใช้ class `krit-btn krit-btn-success` หรือ `<Button color="success">` สำหรับปุ่มสีเขียว
 - **การปรับแต่ง**: สามารถปรับแต่งสีได้ผ่านตัวแปร CSS `--krit-color-success` และ `--krit-color-success-hover`
+- **React Component**: ใช้งานง่ายผ่าน `<Button>` component
 
 ## ใบอนุญาต
 
